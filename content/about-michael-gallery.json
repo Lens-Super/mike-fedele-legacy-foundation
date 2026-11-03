@@ -99,5 +99,62 @@
   "memoriesPage": {
     "purpose": "visitor-submitted memories and photographs only; admin approval required"
   },
-  "notes": "Do not assume Library photos have been uploaded to GitHub. Populate asset paths after transferring originals. Preserve all approved copy and design."
+  "notes": "Original 12-photo planning list retained above for reconciliation. Uploaded gallery uses the 11 real root-level photographs listed in uploadedGalleryFiles. Do not assume differing filenames are identical; do not substitute or alter photographs.",
+  "uploadedGalleryFiles": [
+    {
+      "filename": "imagejpeg_20221105_070347.jpg",
+      "assetPath": "imagejpeg_20221105_070347.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "FB_IMG_1667784449855.jpg",
+      "assetPath": "FB_IMG_1667784449855.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "PXL_20220902_210023536_20221108_180539 (1).jpg",
+      "assetPath": "PXL_20220902_210023536_20221108_180539%20(1).jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "123_2_20221105_175746.jpeg",
+      "assetPath": "123_2_20221105_175746.jpeg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "PXL_20221015_193112558.jpg",
+      "assetPath": "PXL_20221015_193112558.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "Resized_20221004_090554_2260371981490964.jpg",
+      "assetPath": "Resized_20221004_090554_2260371981490964.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "FB_IMG_1671075832543.jpg",
+      "assetPath": "FB_IMG_1671075832543.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "Screenshot_20230224_172439_Snapchat.jpg",
+      "assetPath": "Screenshot_20230224_172439_Snapchat.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "20220701_205709.jpg",
+      "assetPath": "20220701_205709.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "Resized_20221023_131544_20221023_131630.jpg",
+      "assetPath": "Resized_20221023_131544_20221023_131630.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    },
+    {
+      "filename": "Screenshot_20261019_201945_Photos.jpg",
+      "assetPath": "Screenshot_20261019_201945_Photos.jpg",
+      "status": "uploaded at repository root; shown in About Mike gallery"
+    }
+  ]
 }
