@@ -1,0 +1,103 @@
+{
+  "section": "About Michael",
+  "presentation": "varied responsive gallery; mixed portrait and landscape; no face editing or synthetic imagery",
+  "sourceFolder": "Mike Fedele Legacy Foundation/Website Photos",
+  "photos": [
+    {
+      "id": 1,
+      "filename": "imagejpeg_20221105_070347.jpg",
+      "assetPath": "assets/about-michael/imagejpeg_20221105_070347.jpg",
+      "alt": "Michael Fedele — photograph 1",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 2,
+      "filename": "FB_IMG_1667784449855.jpg",
+      "assetPath": "assets/about-michael/FB_IMG_1667784449855.jpg",
+      "alt": "Michael Fedele — photograph 2",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 3,
+      "filename": "PXL_20220902_210023536.jpg",
+      "assetPath": "assets/about-michael/PXL_20220902_210023536.jpg",
+      "alt": "Michael Fedele — photograph 3",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 4,
+      "filename": "PXL_20221029_195238347.MP.jpg",
+      "assetPath": "assets/about-michael/PXL_20221029_195238347.MP.jpg",
+      "alt": "Michael Fedele — photograph 4",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 5,
+      "filename": "123_2_20221105_175746.jpeg",
+      "assetPath": "assets/about-michael/123_2_20221105_175746.jpeg",
+      "alt": "Michael Fedele — photograph 5",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 6,
+      "filename": "PXL_20221015_193112558_20221130_101034.jpg",
+      "assetPath": "assets/about-michael/PXL_20221015_193112558_20221130_101034.jpg",
+      "alt": "Michael Fedele — photograph 6",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 7,
+      "filename": "Resized_20221004_090554_2260371981490964.jpg",
+      "assetPath": "assets/about-michael/Resized_20221004_090554_2260371981490964.jpg",
+      "alt": "Michael Fedele — photograph 7",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 8,
+      "filename": "FB_IMG_1671075832543.jpg",
+      "assetPath": "assets/about-michael/FB_IMG_1671075832543.jpg",
+      "alt": "Michael Fedele — photograph 8",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 9,
+      "filename": "output_image1673881867968.jpg",
+      "assetPath": "assets/about-michael/output_image1673881867968.jpg",
+      "alt": "Michael Fedele — photograph 9",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 10,
+      "filename": "IMG_20230504_192949_725.jpg",
+      "assetPath": "assets/about-michael/IMG_20230504_192949_725.jpg",
+      "alt": "Michael Fedele — photograph 10",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 11,
+      "filename": "Screenshot_20240916_171458_Gallery.jpg",
+      "assetPath": "assets/about-michael/Screenshot_20240916_171458_Gallery.jpg",
+      "alt": "Michael Fedele — photograph 11",
+      "status": "awaiting asset transfer"
+    },
+    {
+      "id": 12,
+      "filename": "Screenshot_20230224_172439_Snapchat.jpg",
+      "assetPath": "assets/about-michael/Screenshot_20230224_172439_Snapchat.jpg",
+      "alt": "Michael Fedele — photograph 12",
+      "status": "awaiting asset transfer"
+    }
+  ],
+  "additionalDogPhotos": {
+    "expected": 4,
+    "status": "awaiting recovery; do not substitute"
+  },
+  "homepageHero": {
+    "subject": "Michael and Snickers",
+    "status": "retain approved original photo"
+  },
+  "memoriesPage": {
+    "purpose": "visitor-submitted memories and photographs only; admin approval required"
+  },
+  "notes": "Do not assume Library photos have been uploaded to GitHub. Populate asset paths after transferring originals. Preserve all approved copy and design."
+}
