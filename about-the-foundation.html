@@ -63,12 +63,13 @@ footer{background:#2D6FBF!important;background-image:none!important;color:#fff!i
 
 /* Foundation priorities: readable, original-text cards */
 .foundation-story .foundation-priority-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 30px;padding:0!important;list-style:none}
-.foundation-story .foundation-priority-card{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0;padding:25px 23px;border:1px solid #C5CDD6;border-top:4px solid #2D6FBF;border-radius:10px;background:#f7f9fc;box-shadow:none}
-.foundation-story .foundation-priority-icon{display:flex;align-items:center;justify-content:center;color:#2D6FBF;width:48px;height:48px;border:1px solid #C5CDD6;border-radius:12px;background:#fff}
+.foundation-story .foundation-priority-card{display:flex;flex-direction:column;align-items:stretch;gap:12px;min-width:0;padding:25px 23px;border:1px solid #C5CDD6;border-top:4px solid #2D6FBF;border-radius:10px;background:#f7f9fc;box-shadow:none;overflow:visible}
+.foundation-story .foundation-priority-icon{display:flex;align-items:center;justify-content:center;width:100%;min-height:166px;padding:8px 0;overflow:visible;background:transparent;border:0}
+.foundation-story .foundation-priority-icon img{display:block;width:100%;height:150px;max-width:100%;object-fit:contain;object-position:center}
 .foundation-story .foundation-priority-card h3{font-family:"Barlow Condensed",Impact,sans-serif;font-size:clamp(23px,2.5vw,29px)!important;line-height:1.12;margin:0 0 9px;color:#2D6FBF}
 .foundation-story .foundation-priority-card p{font-family:"DM Sans",sans-serif;font-size:clamp(16px,1.5vw,18px);line-height:1.55;margin:0;color:#23303d}
-@media(max-width:650px){.foundation-story .foundation-priority-grid{grid-template-columns:1fr;gap:12px}.foundation-story .foundation-priority-card{flex-direction:row;gap:15px;padding:19px 16px}.foundation-story .foundation-priority-icon{flex:0 0 46px;width:46px;height:46px}.foundation-story .foundation-priority-card h3{font-size:25px!important}}
-@media(max-width:380px){.foundation-story .foundation-priority-card{gap:11px;padding:16px 12px}.foundation-story .foundation-priority-icon{flex-basis:40px;width:40px;height:40px}.foundation-story .foundation-priority-card h3{font-size:23px!important}}
+@media(max-width:650px){.foundation-story .foundation-priority-grid{grid-template-columns:1fr;gap:12px}.foundation-story .foundation-priority-card{gap:9px;padding:19px 20px}.foundation-story .foundation-priority-icon{min-height:161px}.foundation-story .foundation-priority-icon img{height:145px}.foundation-story .foundation-priority-copy{width:100%;min-width:0}.foundation-story .foundation-priority-card h3{font-size:25px!important}}
+@media(max-width:380px){.foundation-story .foundation-priority-card{gap:8px;padding:16px 12px}.foundation-story .foundation-priority-icon img{height:132px}.foundation-story .foundation-priority-card h3{font-size:23px!important}}
 
 /* Foundation editorial typography: emphasize approved wording without rewriting */
 .foundation-story strong{font-weight:800;color:#225FA9}
@@ -114,12 +115,6 @@ footer{background:#2D6FBF!important;background-image:none!important;color:#fff!i
 @media(max-width:380px){.site-header .mobile-brand img{width:57px!important}.site-header .mobile-brand-name{font-size:13px!important;letter-spacing:.025em!important}.site-header .mobile-menu summary{font-size:16px!important;padding:7px!important}}
 @media(min-width:901px){.interior-brand-header{display:none!important}}
 
-/* Priority illustrations: preserve each complete SVG viewBox at every width. */
-.foundation-story .foundation-priority-icon{box-sizing:border-box!important;display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:center!important;width:100%!important;height:auto!important;min-height:0!important;padding:8px 0!important;overflow:visible!important;background:transparent!important;border:0!important}
-.foundation-story .foundation-priority-icon img{box-sizing:border-box!important;display:block!important;flex:none!important;width:auto!important;height:150px!important;max-width:100%!important;max-height:none!important;object-fit:contain!important;object-position:center!important;overflow:visible!important}
-.foundation-story .foundation-priority-card{height:auto!important;min-height:0!important;overflow:visible!important}
-@media(max-width:650px){.foundation-story .foundation-priority-card{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:9px!important;padding:19px 20px!important}.foundation-story .foundation-priority-icon{width:100%!important}.foundation-story .foundation-priority-icon img{height:145px!important}.foundation-story .foundation-priority-copy{width:100%!important;min-width:0!important}}
-@media(max-width:380px){.foundation-story .foundation-priority-icon img{height:132px!important}}
 
 /* Original family photographs: keep full proportions and never crop. */
 .foundation-story-photo{width:min(100%,680px);margin:28px auto 34px}
