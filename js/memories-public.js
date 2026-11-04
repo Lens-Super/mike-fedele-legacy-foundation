@@ -1,128 +1,116 @@
 (() => {
-  const cfg = window.MEMORIES_CONFIG || {};
+  const config = window.MEMORIES_CONFIG || {};
+  const base = String(config.apiBase || "").replace(/\/$/, "");
   const form = document.getElementById("memory-form");
   const status = document.getElementById("memory-form-status");
   const gallery = document.getElementById("approved-memories");
   const setupNotice = document.getElementById("memories-setup-notice");
-  const endpoint = `${String(cfg.supabaseUrl || "").replace(/\/$/, "")}/functions/v1/submit-memory`;
-  const configured = /^https:\/\/[\w-]+\.supabase\.co$/.test(cfg.supabaseUrl || "") && !!cfg.supabaseAnonKey;
-  const esc = (value) => String(value || "");
 
-  function message(text, kind) {
+  function showMessage(text, kind = "") {
     status.textContent = text;
-    status.dataset.kind = kind || "";
+    status.dataset.kind = kind;
     status.hidden = !text;
   }
-
-  if (!configured) {
+  if (!/^https:\/\/[a-z0-9-]+\.[a-z0-9-]+\.workers\.dev$/i.test(base)) {
     form.hidden = true;
     setupNotice.hidden = false;
-    setupNotice.textContent = "The memory form is being connected. Please check back soon — nothing is published without Stephanie’s approval.";
-    gallery.innerHTML = "";
+    setupNotice.textContent = "The memory submission system is being connected. Please check back soon — nothing is published without Stephanie’s approval.";
+    gallery.replaceChildren();
     return;
   }
-
-  setupNotice.hidden = true;
   form.hidden = false;
-  const client = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
-    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
-  });
-
-  if (cfg.turnstileSiteKey) {
-    const renderChallenge = () => {
-      if (!window.turnstile || form.dataset.turnstileRendered) return;
-      form.dataset.turnstileRendered = "true";
-      window.turnstile.render(document.getElementById("memory-turnstile"), {
-        sitekey: cfg.turnstileSiteKey,
-        callback: (token) => { form.dataset.turnstileToken = token; },
-        "expired-callback": () => { form.dataset.turnstileToken = ""; },
-        "error-callback": () => { form.dataset.turnstileToken = ""; }
-      });
-    };
-    document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')?.addEventListener("load", renderChallenge, { once: true });
-    renderChallenge();
-  }
+  setupNotice.hidden = true;
+  const turnstileContainer = document.getElementById("memory-turnstile");
+  let turnstileToken = "";
+  const renderChallenge = () => {
+    if (!config.turnstileSiteKey || !window.turnstile || turnstileContainer.dataset.rendered) return;
+    turnstileContainer.dataset.rendered = "1";
+    window.turnstile.render(turnstileContainer, {
+      sitekey: config.turnstileSiteKey,
+      callback: (token) => { turnstileToken = token; },
+      "expired-callback": () => { turnstileToken = ""; },
+      "error-callback": () => { turnstileToken = ""; },
+    });
+  };
+  document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')?.addEventListener("load", renderChallenge, { once: true });
+  renderChallenge();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-    const button = form.querySelector("button[type=submit]");
-    button.disabled = true;
-    message("Sending your memory…", "busy");
+    const submit = form.querySelector("button[type=submit]");
+    submit.disabled = true;
+    showMessage("Sending your memory…", "busy");
     const data = new FormData(form);
-    data.set("turnstile_token", form.dataset.turnstileToken || "");
+    data.set("turnstile_token", turnstileToken);
     try {
-      const response = await fetch(endpoint, { method: "POST", headers: { apikey: cfg.supabaseAnonKey }, body: data });
+      const response = await fetch(`${base}/api/submit`, { method: "POST", body: data, mode: "cors" });
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || "Please try again.");
       form.reset();
-      form.dataset.turnstileToken = "";
+      turnstileToken = "";
       window.turnstile?.reset();
-      message("Thank you for sharing a piece of Mike. Stephanie will review it before anything appears here.", "success");
+      showMessage("Thank you for sharing a piece of Mike. Stephanie will review it before anything appears here.", "success");
     } catch (error) {
-      message(error.message || "We couldn't send that memory right now. Please try again.", "error");
+      showMessage(error.message || "We couldn't send that memory right now. Please try again.", "error");
+      window.turnstile?.reset();
+      turnstileToken = "";
     } finally {
-      button.disabled = false;
+      submit.disabled = false;
     }
   });
 
-  function cardFor(memory, signedByPath) {
+  function createCard(memory) {
     const article = document.createElement("article");
     article.className = "memory-card";
-    const heading = document.createElement(memory.title ? "h3" : "p");
-    if (memory.title) heading.className = "memory-card-title";
-    else heading.className = "memory-card-story";
-    heading.textContent = memory.title || memory.story;
-    article.append(heading);
     if (memory.title) {
-      const story = document.createElement("p");
-      story.className = "memory-card-story";
-      story.textContent = memory.story;
-      article.append(story);
+      const title = document.createElement("h3");
+      title.className = "memory-card-title";
+      title.textContent = memory.title;
+      article.append(title);
     }
+    const story = document.createElement("p");
+    story.className = "memory-card-story";
+    story.textContent = memory.story;
+    article.append(story);
     if (memory.photos?.length) {
-      const photos = document.createElement("div");
-      photos.className = "memory-card-photos";
-      memory.photos.forEach((photo) => {
-        const src = signedByPath.get(photo.path);
-        if (!src) return;
+      const photoGrid = document.createElement("div");
+      photoGrid.className = "memory-card-photos";
+      for (const photo of memory.photos) {
         const image = document.createElement("img");
-        image.src = src;
-        image.alt = `Photo shared by ${esc(memory.contributor_name)} with this memory of Mike`;
+        image.src = photo.url;
+        image.alt = `Photo shared by ${memory.contributor_name} with this memory of Mike`;
         image.loading = "lazy";
-        photos.append(image);
-      });
-      if (photos.childElementCount) article.append(photos);
+        photoGrid.append(image);
+      }
+      article.append(photoGrid);
     }
     const byline = document.createElement("p");
     byline.className = "memory-card-byline";
-    byline.textContent = `Shared by ${esc(memory.contributor_name)}`;
+    byline.textContent = `Shared by ${memory.contributor_name}`;
     article.append(byline);
     return article;
   }
 
   async function loadMemories() {
-    const { data, error } = await client.rpc("get_published_memories");
-    if (error) throw error;
-    const paths = [...new Set((data || []).flatMap((entry) => (entry.photos || []).map((photo) => photo.path)))];
-    let signed = [];
-    if (paths.length) {
-      const result = await client.storage.from("memories-pending").createSignedUrls(paths, 300);
-      if (result.error) throw result.error;
-      signed = result.data || [];
-    }
-    const signedByPath = new Map(signed.map((item) => [item.path, item.signedUrl]));
+    const response = await fetch(`${base}/api/memories`, { cache: "no-store", mode: "cors" });
+    if (!response.ok) throw new Error("Public memories unavailable");
+    const records = await response.json();
     gallery.replaceChildren();
-    (data || []).forEach((entry) => gallery.append(cardFor(entry, signedByPath)));
-    if (!data?.length) {
+    if (!records.length) {
       const empty = document.createElement("p");
       empty.className = "memories-empty";
       empty.textContent = "No memories have been shared here yet. You can help start the collection.";
       gallery.append(empty);
+      return;
     }
+    records.forEach((memory) => gallery.append(createCard(memory)));
   }
-
   loadMemories().catch(() => {
-    gallery.innerHTML = '<p class="memories-empty">Memories are temporarily unavailable. Please reload in a little while.</p>';
+    gallery.replaceChildren();
+    const error = document.createElement("p");
+    error.className = "memories-empty";
+    error.textContent = "Memories are temporarily unavailable. Please reload in a little while.";
+    gallery.append(error);
   });
 })();

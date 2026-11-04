@@ -1,0 +1,22 @@
+name = "mike-fedele-memories-admin"
+main = "admin-worker.js"
+compatibility_date = "2026-11-04"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mike-memories"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "mike-memories-originals"
+
+[assets]
+directory = "./admin-assets"
+binding = "ASSETS"
+run_worker_first = true
+
+[vars]
+ACCESS_TEAM_DOMAIN = ""
+ACCESS_AUD = ""

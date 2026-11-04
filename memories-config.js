@@ -1,7 +1,7 @@
-// The project URL, anon/publishable key, and Turnstile site key are public values.
-// Never place a Supabase service-role key or Turnstile secret in this file.
+// Public configuration only. Set apiBase to the deployed Worker URL and the
+// Turnstile site key after Cloudflare resources have been created.
 window.MEMORIES_CONFIG = {
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  apiBase: "",
+  adminUrl: "",
   turnstileSiteKey: ""
 };
