@@ -1,0 +1,2 @@
+[functions.submit-memory]
+verify_jwt = false
