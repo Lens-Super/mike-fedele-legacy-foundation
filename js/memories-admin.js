@@ -1,7 +1,6 @@
 (() => {
   const cfg = window.MEMORIES_CONFIG || {};
   const ADMIN = "stephanie@mikefedelelegacy.org";
-  const client = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
   const login = document.getElementById("admin-login");
   const dashboard = document.getElementById("admin-dashboard");
   const list = document.getElementById("submission-list");
@@ -13,6 +12,14 @@
     notice.dataset.kind = error ? "error" : "success";
     notice.hidden = !text;
   }
+
+  if (!/^https:\/\/[\w-]+\.supabase\.co$/.test(cfg.supabaseUrl || "") || !cfg.supabaseAnonKey || !window.supabase) {
+    login.hidden = true;
+    dashboard.hidden = true;
+    say("The private review dashboard is being connected and is not available yet.", true);
+    return;
+  }
+  const client = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
 
   async function photoUrls(paths) {
     if (!paths.length) return new Map();
