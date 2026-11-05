@@ -14,7 +14,7 @@
   if (!/^https:\/\/[a-z0-9-]+\.[a-z0-9-]+\.workers\.dev$/i.test(base)) {
     form.hidden = true;
     setupNotice.hidden = false;
-    setupNotice.textContent = "The memory submission system is being connected. Please check back soon — nothing is published without Stephanie’s approval.";
+    setupNotice.textContent = "The memory submission system is being connected. Please check back soon. Submissions are subject to approval before publication.";
     gallery.replaceChildren();
     return;
   }
@@ -50,7 +50,7 @@
       form.reset();
       turnstileToken = "";
       window.turnstile?.reset();
-      showMessage("Thank you for sharing a piece of Mike. Stephanie will review it before anything appears here.", "success");
+      showMessage("Thank you for sharing a piece of Mike. Your submission will be reviewed before publication.", "success");
     } catch (error) {
       showMessage(error.message || "We couldn't send that memory right now. Please try again.", "error");
       window.turnstile?.reset();
